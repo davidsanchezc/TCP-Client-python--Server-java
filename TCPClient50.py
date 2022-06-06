@@ -1,5 +1,6 @@
 import socket
 import Cliente50
+import threading
 class TCPClient50:
     SERVERPORT = 0
     mRun = False
@@ -14,9 +15,12 @@ class TCPClient50:
         TCPClient50.inst = Cliente50.Cliente50()
 
     def sendMessage(self, message,sock):
+        # threadLock = threading.Lock()
+        # threadLock.acquire()
         if(sock.sendall(message.encode())==None):
+            # threadLock.release()
             print("Mensaje enviado con éxito")
-
+        
     def stopClient(self):
         TCPClient50.mRun=False
 
@@ -42,14 +46,13 @@ class TCPClient50:
                 
                 if(len(stringData)!=0):
                     print(stringData)
+                    threadLock = threading.Lock()
                     
                     TCPClient50.inst.clienteRecibe(stringData,a,sock)
-
+                    
             except NameError:
                 print("TCP"+ "S: Error " + str(NameError))
             finally:
                 sock.close()
         except NameError:
             print("TCP"+ "C: Error " + str(NameError))
-        
-
