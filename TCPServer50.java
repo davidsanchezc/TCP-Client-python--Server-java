@@ -91,7 +91,7 @@ public class TCPServer50 {
                 Thread t = new Thread(sendclis[nrcli]);
                 Thread.sleep(10);//Retardo de 10 milisegundos
                 t.start();
-                System.out.println("Nuevo conectado:"+ nrcli+" jugadores conectados");
+                System.out.println("Nuevo conectado:"+ nrcli+" clientes conectados");
                 
             }
             
